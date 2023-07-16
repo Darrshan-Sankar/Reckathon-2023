@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!-- Favicons -->
+    <link href="{%static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{%static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="{%static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+    <!-- Template Main CSS File -->
+    <link href="{%static 'assets/css/style.css' %}" rel="stylesheet">
+  
+    <!-- Vendor JS Files -->
+    <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  
+    <!-- Template Main JS File -->
+    <script src="{%static 'assets/js/main.js' %}"></script>
+</head>
+{% block content %}
+<div style="width: 100%; height: 50px"></div>
+<div style="width: 100%; height: 50px"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <h2>Submit Your Idea</h2>
+        <form method="post" action="{% url 'idea_submit' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="idea_name">Idea Name:</label>
+            <input type="text" class="form-control" id="idea_name" name="idea_name" required>
+          </div>
+          <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+          </div>
+          <div class="form-group">
+            <label for="idea_subject">Idea Subject:</label>
+            <input type="text" class="form-control" id="idea_subject" name="idea_subject" required>
+          </div>
+          <div class="form-group">
+            <label for="idea_description">Idea Description:</label>
+            <textarea class="form-control" id="idea_description" name="idea_description" rows="5" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="amount_expecting">Amount Expecting:</label>
+            <input type="number" class="form-control" id="amount_expecting" name="amount_expecting" required>
+          </div>
+          <div style="width: 100%; height: 50px"></div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <div style="width: 100%; height: 50px"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>loginPage</title>
+  <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+  <script src="https://kit.fontawesome.com/7b918fbbb5.js" crossorigin="anonymous"></script>
+</head>
+{% block content %}
+  <div style="width: 100%; height: 100px"></div>
+  <div class="col-lg-8 mt-5 mt-lg-1" style="margin-left: auto; margin-right: auto;">
+    <div class="text-center">
+      <button class="btn btn-primary" onclick="showLogin()">Login</button>
+      <button class="btn btn-primary" onclick="showSignup()">Signup</button>
+    </div>
+  
+    <div style="width: 100%; height: 50px"></div>
+  
+    <form action="{% url 'login_signup' %}" method="post" role="form" class="php-email-form" id="loginSignupForm">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-12 form-group" id="loginFields">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          <input type="password" name="password" class="form-control mt-3" id="password" placeholder="Password" required>
+        </div>
+  
+        <div class="col-md-12 form-group" id="signupFields" style="display: none;">
+          <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          <input type="email" class="form-control mt-3" name="email" id="email" placeholder="Your Email" required>
+          <select class="form-control mt-3" name="userType" id="userType" required>
+            <option value="" selected disabled>Select User Type</option>
+            <option value="investor">Investor</option>
+            <option value="innovator">Innovator</option>
+          </select>
+          <input type="password" name="password" class="form-control mt-3" id="password" placeholder="Password" required>
+        </div>
+      </div>
+  
+      <div style="width: 100%; height: 50px"></div>
+  
+      <div class="text-center"><button class="btn btn-primary" type="submit">Submit</button></div>
+      <div style="width: 100%; height: 50px"></div>
+    </form>
+  </div>
+  
+  <script>
+    function showLogin() {
+      document.getElementById("loginFields").style.display = "block";
+      document.getElementById("signupFields").style.display = "none";
+    }
+  
+    function showSignup() {
+      document.getElementById("loginFields").style.display = "none";
+      document.getElementById("signupFields").style.display = "block";
+    }
+  </script>
+
+  <div style="width: 100%; height: 50px"></div>
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  
+{% endblock %}

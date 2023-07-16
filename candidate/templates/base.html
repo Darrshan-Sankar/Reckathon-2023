@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <!-- Favicons -->
+  <link href="{%static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{%static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{%static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- Vendor JS Files -->
+  <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{%static 'assets/js/main.js' %}"></script>
+  <style>
+    /* Chat Button */
+    .chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .card-body {
+        background: linear-gradient(to right, #b3d0ee, #5daeff);
+    }
+
+    .card-header {
+        background-color: #1b7de4;
+        color: #fff;
+        padding: 0.5rem 1rem;
+    }
+
+    .card-header .btn-close {
+        color: #fff;
+    }
+
+
+    /* Chat Window */
+    .chat-window {
+        display: none;
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        width: 350px;
+        z-index: 1000;
+        font-size: 16px;
+    }
+
+    .chat-messages {
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    .chat-form {
+        margin-top: 10px;
+    }
+</style>    
+<style>
+    .message.request {
+        background-color: #007bff;
+        color: #fff;
+        margin-left: auto; /* Align to the right wall */
+    }
+
+    .message.response {
+        background-color: #f1f1f1;
+        color: #000;
+        margin-right: auto; /* Align to the left wall */
+    }
+
+    .message {
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        max-width: 80%;
+    }
+
+    .sender {
+        font-weight: bold;
+        margin-right: 2px;
+        margin-left: 3px;
+    }
+
+    .message-text {
+        display: inline-block;
+    }
+
+    .button-highlight {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+</style>
+</head>
+<body>
+  <!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-inner-pages">
+  <div class="container d-flex align-items-center justify-content-lg-between">
+
+    <!--<h1 class="logo me-auto me-lg-0"><a href="{% url 'main' %}">KSD<span>.</span></a></h1>-->
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <a href="{% url 'main' %}" class="logo me-auto me-lg-0"><img src="{%static 'assets/img/logo.png' %}" width="50px" height="60px" class="img-fluid"></a>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto active" href="{% url 'main' %}#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'main' %}#about">About</a></li>      
+        <li><a class="nav-link scrollto" href="{% url 'main' %}#work">Services</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'main' %}#faq">FAQ</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'main' %}#contact">Contact</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'idea_submit' %}">Idea</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+    <a href="{%url 'login_signup'%}" class="get-started-btn scrollto">Login/Register Up</a>
+
+  </div>
+</header><!-- End Header -->
+  <div>
+    {% block content %}
+    <div ></div>
+    {% endblock %}
+  </div>
+
+  <!-- Chat Button -->
+  <div class="chat-button">
+    <button class="btn btn-primary btn-lg rounded-circle" id="chat-button">
+        <i class="bi bi-lightning-charge-fill"></i>
+    </button>
+</div>
+
+<!-- Chat Window -->
+<div class="chat-window" id="chat-window">
+    <div class="card">
+        <div class="card-header" style="background-color: #007bff; color: #fff;">
+            <h5 class="card-title mb-0">Chat <button id="close-button" class="btn-close float-end"></button></h5>
+        </div>
+        <div class="card-body">
+            <div id="chat-messages" class="chat-messages"></div>
+            <form id="chat-form" class="chat-form">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" id="chat-input" class="form-control" placeholder="Type your message..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-arrow-right-circle-fill"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Chat Button Click Event
+    document.getElementById('chat-button').addEventListener('click', function() {
+        document.getElementById('chat-button').style.display = 'none';
+        document.getElementById('chat-window').style.display = 'block';
+    });
+
+    // Close Button Click Event
+    document.getElementById('close-button').addEventListener('click', function() {
+        document.getElementById('chat-window').style.display = 'none';
+        document.getElementById('chat-button').style.display = 'block';
+    });
+    // Close Button Click Event
+    document.getElementById('close-button').addEventListener('click', function() {
+        document.getElementById('chat-window').style.display = 'none';
+    });
+</script>
+
+
+<script>
+    // Close Button Click Event
+    document.getElementById('close-button').addEventListener('click', function() {
+        document.getElementById('chat-window').style.display = 'none';
+    });
+</script>
+
+<script>
+    // Chat Button Click Event
+document.getElementById('chat-button').addEventListener('click', function() {
+    document.getElementById('chat-button').style.display = 'none';
+    document.getElementById('chat-window').style.display = 'block';
+});
+
+// Close Button Click Event
+document.getElementById('close-button').addEventListener('click', function() {
+    document.getElementById('chat-window').style.display = 'none';
+    document.getElementById('chat-button').style.display = 'block';
+});
+
+// Chat Form Submit Event
+document.getElementById('chat-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const messageInput = document.getElementById('chat-input');
+    const message = messageInput.value;
+    messageInput.value = '';
+
+    // Highlight the chat button
+    const chatButton = document.getElementById('chat-button');
+    chatButton.classList.add('button-highlight');
+
+    // Display the request in the chat window
+    displayMessage('', message, 'request');
+
+    // Send the message to the Django server using AJAX
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken') // Include CSRF token for Django
+        },
+        body: JSON.stringify({ message: message })
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Display the response in the chat window
+            displayMessage('', data.message, 'response');
+
+            // Remove the highlight from the chat button
+            chatButton.classList.remove('button-highlight');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+
+
+// Display a message in the chat window
+function displayMessage(sender, message, type) {
+    const chatMessages = document.getElementById('chat-messages');
+    const newMessage = document.createElement('div');
+    newMessage.className = `message ${type}`;
+    newMessage.innerHTML = `
+        <span class="sender">${sender}</span>
+        <span class="message-text">${message}</span>
+    `;
+    chatMessages.appendChild(newMessage);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Helper function to get the value of a cookie
+function getCookie(name) {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+}
+
+</script>
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="spanning-before"></div>
+          <div class="col-lg-3 col-md-6" style=" margin-left: auto; margin-right: auto;">
+            <div class="footer-info" >
+              <a href="{% url 'main' %}" ><img src="{%static 'assets/img/logo.png' %}" width = "100px" height="85px" style="margin-left: 20%; padding-bottom: 2%;" class="img-fluid"></a>
+              <p>
+                Coimbatore - TamilNadu <br>
+                India<br><br>
+                <strong>Phone:</strong> +91 9989889336<br>
+                <strong>Email:</strong> SponsorWave.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="spanning"></div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#services">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#faq">FAQ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#team">Team</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-5 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#services">Idea Management System</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main' %}#services">Investor Registration System</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SponsorWave</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+</body>
+</html>
