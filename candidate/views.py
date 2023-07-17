@@ -53,6 +53,13 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import LoginForm, SignupForm
 
+from django.shortcuts import render
+from .models import Idea
+
+def idea_list(request):
+    ideas = Idea.objects.all()
+    return render(request, 'idea_list.html', {'ideas': ideas})
+
 def login_signup(request):
     if request.method == 'POST':
         if 'login' in request.POST:
